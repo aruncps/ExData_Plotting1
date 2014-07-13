@@ -7,6 +7,9 @@ consumptionToDate$Time <- strptime(paste(consumptionToDate$Date, consumptionToDa
 consumptionToDate$Date <- as.Date(consumptionToDate$Date,"%d/%m/%Y")
 consumptionToDateFiltered <- consumptionToDate[consumptionToDate$Date %in% as.Date(c('2007-02-01', '2007-02-02')),]
 
-png(filename = "C:\\Users\\shanmuga\\ExData_Plotting1\\plot1.png",width = 480, height = 480)
-hist(consumptionToDateFiltered$Global_active_power,main = "Global Active Power", xlab="Global Active Power (kilowatts)",ylab="Frequency",col="red") 
+png(filename = "C:\\Users\\shanmuga\\ExData_Plotting1\\plot3.png",width = 480, height = 480)
+with(consumptionToDateFiltered,plot(Time,Sub_metering_1,col="black",type="l",main = "", xlab="",ylab="Energy sub metering"))
+with(consumptionToDateFiltered,lines(Time,Sub_metering_2,col="red",type="l"))
+with(consumptionToDateFiltered,lines(Time,Sub_metering_3,col="blue",type="l"))
+legend("topright", legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),lty=c(1,1),lwd=c(2.5,2.5),col=c("black","red","blue"))
 dev.off()
